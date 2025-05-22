@@ -48,6 +48,23 @@ body.dark-mode {
         .search-history-item:hover {
             background-color: #f8f9fa;
         }
+
+        /* Add these styles */
+#imageContainer {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#readAloudBtn, #stopReadingBtn {
+  transition: all 0.3s ease;
+}
+
+/* Dark mode adjustments */
+.dark-mode #imageContainer .text-muted {
+  color: #aaa !important;
+}
     </style>
 </head>
 <body>
