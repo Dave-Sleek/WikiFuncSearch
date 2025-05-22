@@ -22,7 +22,6 @@ async function wikiFunction(searchTerm) {
   const url = `https://${language}.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURIComponent(searchTerm)}`;
   
   // Rest of your existing wikiFunction code...
-}
   // Rest of your existing wikiFunction code...
 
     const response = await fetch(url);
