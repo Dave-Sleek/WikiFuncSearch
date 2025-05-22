@@ -34,7 +34,7 @@ async function wikiFunction(searchTerm) {
     image: pages[pageId].thumbnail?.source || null
   };
   // Rest of your existing wikiFunction code...
-    
+}
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
