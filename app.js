@@ -57,6 +57,44 @@ async function wikiFunction(searchTerm) {
     };
 }
 
+// Add these variables at the top of your script
+let speechSynthesis = window.speechSynthesis;
+let currentUtterance = null;
+
+// Add these functions to your code
+function readAloud(text) {
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+  }
+
+  currentUtterance = new SpeechSynthesisUtterance(text);
+  currentUtterance.lang = document.getElementById('language-select').value;
+  
+  // Find a voice that matches the selected language
+  const voices = speechSynthesis.getVoices();
+  const languageCode = document.getElementById('language-select').value;
+  const voice = voices.find(v => v.lang.startsWith(languageCode)) || voices[0];
+  
+  if (voice) {
+    currentUtterance.voice = voice;
+  }
+
+  currentUtterance.onend = () => {
+    document.getElementById('stopReadingBtn').classList.add('d-none');
+    document.getElementById('readAloudBtn').classList.remove('d-none');
+  };
+
+  speechSynthesis.speak(currentUtterance);
+  document.getElementById('readAloudBtn').classList.add('d-none');
+  document.getElementById('stopReadingBtn').classList.remove('d-none');
+}
+
+function stopReading() {
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+  }
+}
+
 // Add this to your existing JavaScript
 const languageSelect = document.getElementById('language-select');
 
@@ -113,10 +151,19 @@ async function performSearch(term) {
     
     try {
         // Show loading, hide results and error
-        loadingIndicator.classList.remove('d-none');
-        resultsContainer.classList.add('d-none');
-        errorAlert.classList.add('d-none');
-        
+    resultTitle.textContent = result.title;
+    resultContent.textContent = result.content || "No extract available.";
+    fullArticleLink.href = result.url;
+    
+    // Display image if available
+    const imageContainer = document.getElementById('imageContainer');
+    imageContainer.innerHTML = result.image 
+      ? `<img src="${result.image}" alt="${result.title}" class="img-fluid rounded mb-3">` 
+      : '<div class="text-muted">No image available</div>';
+    
+    // Set up read aloud button
+    document.getElementById('readAloudBtn').onclick = () => readAloud(`${result.title}. ${result.content}`);
+    document.getElementById('stopReadingBtn').onclick = stopReading;
         // Perform search
         const result = await wikiFunction(term);
         
