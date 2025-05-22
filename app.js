@@ -22,6 +22,9 @@ async function wikiFunction(searchTerm) {
     };
 }
 
+const lang = document.getElementById('language-select').value;
+const url = `https://${lang}.wikipedia.org/...`;
+
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
