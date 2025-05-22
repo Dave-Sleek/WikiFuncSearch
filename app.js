@@ -18,8 +18,21 @@ darkModeToggle.addEventListener('change', (e) => {
 // Modify wikiFunction to use selected language
 async function wikiFunction(searchTerm) {
   const language = document.getElementById('language-select').value;
-  const url = `https://${language}.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURIComponent(searchTerm)}`;
+  const url = `https://${language}.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|pageimages&exintro&explaintext&redirects=1&pithumbsize=300&titles=${encodeURIComponent(searchTerm)}`;
   
+  const response = await fetch(url);
+  const data = await response.json();
+  const pages = data.query.pages;
+  const pageId = Object.keys(pages)[0];
+  
+  if (pageId === "-1") throw new Error("No results found");
+  
+  return {
+    title: pages[pageId].title,
+    content: pages[pageId].extract,
+    url: `https://${language}.wikipedia.org/wiki/${encodeURIComponent(pages[pageId].title)}`,
+    image: pages[pageId].thumbnail?.source || null
+  };
   // Rest of your existing wikiFunction code...
     
     const response = await fetch(url);
