@@ -1,6 +1,26 @@
 // Wikipedia API function
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Set initial state
+if (storedDarkMode) {
+  document.body.classList.add('dark-mode');
+  darkModeToggle.checked = true;
+}
+
+// Toggle handler
+darkModeToggle.addEventListener('change', (e) => {
+  document.body.classList.toggle('dark-mode', e.target.checked);
+  localStorage.setItem('darkMode', e.target.checked);
+});
+
+// Modify wikiFunction to use selected language
 async function wikiFunction(searchTerm) {
-    const url = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURIComponent(searchTerm)}`;
+  const language = document.getElementById('language-select').value;
+  const url = `https://${language}.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURIComponent(searchTerm)}`;
+  
+  // Rest of your existing wikiFunction code...
     
     const response = await fetch(url);
     if (!response.ok) {
@@ -22,8 +42,17 @@ async function wikiFunction(searchTerm) {
     };
 }
 
-const lang = document.getElementById('language-select').value;
-const url = `https://${lang}.wikipedia.org/...`;
+// Add this to your existing JavaScript
+const languageSelect = document.getElementById('language-select');
+
+// Load saved language
+const savedLanguage = localStorage.getItem('wikiLanguage') || 'en';
+languageSelect.value = savedLanguage;
+
+// Save on change
+languageSelect.addEventListener('change', () => {
+  localStorage.setItem('wikiLanguage', languageSelect.value);
+});
 
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
