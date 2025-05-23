@@ -1,0 +1,308 @@
+ body {
+      background: linear-gradient(135deg, #5892f0, #ee68c1);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-size: cover;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      transition: transform 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: scale(1.01);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #5892f0, #ee68c1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark-mode {
+      background: linear-gradient(135deg, #0b40a3, #771456);
+      color: #fff;
+    }
+
+    .dark-mode .glass-card {
+      background: rgba(40, 40, 40, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color:aliceblue;
+    }
+
+    .dark-mode .card-header {
+      background: linear-gradient(135deg, #5892f0, #ee68c1) !important;
+    }
+
+    .dark-mode .form-control,
+    .dark-mode .form-select {
+      background-color: rgba(231, 231, 231, 0.74);
+      color: #fff;
+      border: 1px solid #555;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      box-shadow: none;
+      border-color: #0d6efd;
+    }
+
+    .wiki-result {
+      white-space: pre-line;
+    }
+
+    .search-history-item {
+      cursor: pointer;
+    }
+
+    .search-history-item:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    #imageContainer {
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #readAloudBtn, #stopReadingBtn {
+      transition: all 0.3s ease;
+    }
+
+    .dark-mode #imageContainer .text-muted {
+      color: #aaa !important;
+    }
+
+    .btn {
+      border-radius: 50px;
+    }
+
+    .form-select, .form-control {
+      border-radius: 12px;
+    }
+    
+    #resultContent {
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+      text-align: justify;
+    }
+
+    #resultContent p {
+      margin-bottom: 1.8em;
+    }
+    
+    /* Share Card Modal Styles */
+    .share-card {
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .share-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .share-card .card-img-top {
+      height: 180px;
+      object-fit: cover;
+    }
+    
+    .share-card .card-body {
+      padding: 1.5rem;
+    }
+    
+    .share-btn-group .btn {
+      border-radius: 8px !important;
+      margin: 0 3px;
+    }
+    
+    /* Platform-specific button colors */
+    .btn-twitter {
+      background-color: #1DA1F2;
+      color: white;
+    }
+    
+    .btn-facebook {
+      background-color: #1877F2;
+      color: white;
+    }
+    
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+    }
+    
+    .btn-copy {
+      background-color: #6c757d;
+      color: white;
+    }
+    
+    /* Dark mode adjustments for modal */
+    .dark-mode .share-card {
+      background-color: #2d3748;
+      color: #f8f9fa;
+    }
+    
+    .dark-mode .share-card .text-muted {
+      color: #adb5bd !important;
+    }
+    /* Add to your existing styles */
+.badge.bg-info {
+  background-color: #0dcaf0 !important;
+  font-size: 0.65em;
+  vertical-align: middle;
+}
+
+.btn-sm.btn-link {
+  font-size: 0.8rem;
+  padding: 0;
+  margin-left: 10px;
+}
+/* Add to your existing styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .glass-card {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+  
+  .btn, .form-control, .form-select {
+    display: none !important;
+  }
+}
+
+/* Style for PDF button */
+#downloadPdfBtn {
+  transition: all 0.3s;
+}
+
+#downloadPdfBtn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* PWA-specific styles */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  #installBtn {
+    display: none !important;
+  }
+}
+
+/* Install button */
+#installBtn {
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+#installBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* Brand-specific styles */
+.wai-brand {
+  color: linear-gradient(135deg, #5892f0, #ee68c1);
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+}
+
+.wai-logo {
+  width: 40px;
+  height: 40px;
+  background: url('assets/icon-wikipedia-ai-192x192.png') center/contain;
+}
+
+.legal-disclaimer {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #000000 !important;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.legal-disclaimer a {
+  color: #0d6efd !important;
+  text-decoration: underline;
+}
+
+.dark-mode .legal-disclaimer {
+  color: #aaa !important;
+}
+
+.dark-mode .legal-disclaimer a {
+  color: #6ea8fe !important;
+}
+
+/* Add to your styles.css */
+.wiki-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem 0;
+  color: var(--gradient-start);
+}
+
+.wiki-subsection-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.wiki-paragraph {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.dark-mode .wiki-section-title,
+.dark-mode .wiki-subsection-title {
+  color: #6ea8fe;
+}
+
+/* Wikipedia Content Formatting */
+.wiki-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.5rem 0;
+  color: var(--gradient-start);
+}
+
+.wiki-subsection-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.wiki-paragraph {
+  margin-bottom: 1.8rem;
+  line-height: 1.8;
+}
+
+.dark-mode .wiki-section-title,
+.dark-mode .wiki-subsection-title {
+  color: #6ea8fe;
+}
+
+/* Loading Spinner */
+.spinner-border {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
