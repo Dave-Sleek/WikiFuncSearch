@@ -5,146 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wikipedia Search</title>
 
+
+  <meta name="theme-color" content="#5892f0">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- iOS Safari PWA tags -->
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32">
+  <link rel="icon" href="assets/icon-64.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icon-192.png">
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+  <!-- OG Meta Tags -->
+  <meta property="og:title" content="Wikipedia Search">
+  <meta property="og:description" content="Explore knowledge with Wikipedia">
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <!-- Custom Styles -->
-  <style>
-    body {
-      background: linear-gradient(135deg, #5892f0, #ee68c1);
-      min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     
-      background-size: cover;
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      transition: transform 0.3s ease;
-    }
-
-    .glass-card:hover {
-      transform: scale(1.01);
-    }
-
-    .card-header {
-      background: linear-gradient(135deg, #5892f0, #ee68c1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .dark-mode {
-      background: linear-gradient(135deg, #0b40a3, #771456);
-      color: #fff;
-    }
-
-    .dark-mode .glass-card {
-      background: rgba(40, 40, 40, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      color:aliceblue;
-    }
-
-    .dark-mode .card-header {
-      background: linear-gradient(135deg, #5892f0, #ee68c1) !important;
-    }
-
-    .dark-mode .form-control,
-    .dark-mode .form-select {
-      background-color: rgba(231, 231, 231, 0.74);
-      color: #fff;
-      border: 1px solid #555;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-      box-shadow: none;
-      border-color: #0d6efd;
-    }
-
-    .wiki-result {
-      white-space: pre-line;
-    }
-
-    .search-history-item {
-      cursor: pointer;
-    }
-
-    .search-history-item:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    #imageContainer {
-      min-height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #readAloudBtn, #stopReadingBtn {
-      transition: all 0.3s ease;
-    }
-
-    .dark-mode #imageContainer .text-muted {
-      color: #aaa !important;
-    }
-
-    .btn {
-      border-radius: 50px;
-    }
-
-    .form-select, .form-control {
-      border-radius: 12px;
-    }
-  </style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container mt-5">
     <div class="row justify-content-center">
-
-     
-
       <!-- Main Card -->
       <div class="col-md-8">
         <div class="card glass-card">
           <div class="card-header text-white">
-            <h1 class="h4 mb-0">Wikipedia Search</h1>
+            <h1 class="h4 mb-0">Wikipedia AI Summary</h1>
+            <p>Smarter Summary with free Knowledge Base...</p>
           </div>
           <div class="card-body">
-
-             <!-- Language & Dark Mode -->
-      <div class="row mb-3">
-        <div class="col-md-6  d-flex align-items-left justify-content-end">
-          <div class="form-check form-switch mt-3">
-            <input class="form-check-input" type="checkbox" id="darkModeToggle">
-            <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <label for="language-select" class="form-label">Wikipedia Language:</label>
-          <select id="language-select" class="form-select">
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-            <option value="it">Italian</option>
-            <option value="pt">Portuguese</option>
-            <option value="ru">Russian</option>
-            <option value="zh">Chinese</option>
-            <option value="ja">Japanese</option>
-            <option value="ar">Arabic</option>
-          </select>
-        </div>
-      </div>
+            <!-- Language & Dark Mode -->
+            <div class="row mb-3">
+              <div class="col-md-6 d-flex align-items-left justify-content-end">
+                <div class="form-check form-switch mt-3">
+                  <input class="form-check-input" type="checkbox" id="darkModeToggle">
+                  <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="language-select" class="form-label">Wikipedia Language:</label>
+                <select id="language-select" class="form-select">
+                  <option value="en">English</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                  <option value="de">German</option>
+                  <option value="it">Italian</option>
+                  <option value="pt">Portuguese</option>
+                  <option value="ru">Russian</option>
+                  <option value="zh">Chinese</option>
+                  <option value="ja">Japanese</option>
+                  <option value="ar">Arabic</option>
+                </select>
+              </div>
+            </div>
 
             <!-- Search Input -->
             <div class="mb-3">
               <div class="input-group">
                 <input type="text" class="form-control" id="searchInput" placeholder="Enter search term...">
-                <button class="btn btn-primary" id="searchButton">Search</button>
+                <button class="btn btn-primary" id="searchButton"><i class="fa fa-search"></i> </button>
               </div>
             </div>
 
@@ -159,18 +93,34 @@
             <!-- Error Alert -->
             <div id="errorAlert" class="alert alert-danger d-none" role="alert"></div>
 
-            <!-- Image + Result -->
-            <div class="row">
-              <div class="col-md-4" id="imageContainer"></div>
-              <div class="col-md-8">
-                <div id="resultsContainer" class="d-none">
+            <!-- Results Section -->
+            <div id="resultsContainer" class="d-none">
+              <div class="row">
+                <div class="col-md-4" id="imageContainer"></div>
+                <div class="col-md-8">
                   <h2 id="resultTitle" class="h4 mt-2"></h2>
                   <div id="resultContent" class="wiki-result mb-3"></div>
-                  <a id="fullArticleLink" class="btn btn-outline-primary" target="_blank">Read full article</a>
-                  <div class="container mt-5">
-                    <button id="readAloudBtn" class="btn btn-primary">🔊 Read Aloud</button>
-                    <button id="stopReadingBtn" class="btn btn-secondary d-none">⏹ Stop</button>
+                  
+                  <!-- Action Buttons -->
+                  <div class="btn-group mb-3">
+                    <a id="fullArticleLink" class="btn btn-outline-primary" target="_blank">
+                      <i class="bi bi-book"></i> Read Full
+                    </a>
+                    <button id="shareCardBtn" class="btn btn-outline-info">
+                      <i class="bi bi-share"></i> Share
+                    </button>
+                    <button id="readAloudBtn" class="btn btn-outline-success">
+                      <i class="bi bi-volume-up"></i> Read Aloud
+                    </button>
+                    <button id="stopReadingBtn" class="btn btn-outline-danger d-none">
+                      <i class="bi bi-stop-fill"></i> Stop
+                    </button>
+                    <button id="downloadPdfBtn" class="btn btn-outline-secondary">
+                    <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                  </button>
                   </div>
+                  
+                  <!-- Notes Section -->
                   <div id="notesSection" class="mt-4 d-none">
                     <h5>Your Notes</h5>
                     <textarea id="articleNote" class="form-control" rows="5" placeholder="Write your thoughts, highlights, or reflections here..."></textarea>
@@ -181,20 +131,110 @@
               </div>
             </div>
 
+            <!-- <button class="btn btn-sm btn-warning" 
+                    onclick="confirm('AI features may incur costs. Continue?') && runAI()">
+              Enable Premium AI
+            </button> -->
+
             <!-- History -->
             <div class="mt-4" id="historyContainer">
               <h3 class="h5">Search History</h3>
               <ul class="list-group" id="searchHistory"></ul>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
+  <!-- Share Card Modal -->
+  <div class="modal fade" id="shareCardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass-card">
+        <div class="modal-header">
+          <h5 class="modal-title">Share Article</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card share-card mb-4">
+            <img id="cardImage" src="" class="card-img-top">
+            <div class="card-body">
+              <h5 id="cardTitle" class="card-title"></h5>
+              <p id="cardText" class="card-text"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">via Wikipedia Search</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="share-btn-group text-center">
+            <button id="copyCardBtn" class="btn btn-copy">
+              <i class="bi bi-clipboard"></i> Copy
+            </button>
+            <a id="tweetCardBtn" class="btn btn-twitter" target="_blank">
+              <i class="bi bi-twitter"></i> Twitter
+            </a>
+            <a id="facebookShareBtn" class="btn btn-facebook" target="_blank">
+              <i class="bi bi-facebook"></i> Facebook
+            </a>
+            <a id="whatsappShareBtn" class="btn btn-whatsapp" target="_blank">
+              <i class="bi bi-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="terms-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Terms of Use</h5>
+      </div>
+      <div class="modal-body small">
+        <ol>
+          <li>This application provides unofficial access to Wikipedia content</li>
+          <li>AI summaries are automatically generated and may contain errors</li>
+          <li>You agree to comply with Wikipedia's 
+            <a href="https://en.wikipedia.org/wiki/Terms_of_Use" target="_blank">Terms of Use</a>
+          </li>
+          <li>We are not responsible for any inaccuracies in summarized content</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="legal-disclaimer text-muted small mt-5">
+  <hr>
+  <p>
+    <strong>Wikipedia AI Summary</strong> is an independent application not affiliated with the Wikimedia Foundation. 
+    All Wikipedia content is available under the 
+    <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Creative Commons Attribution-ShareAlike License</a>.
+  </p>
+  
+  <p>
+    Wikipedia® is a registered trademark of the 
+    <a href="https://wikimediafoundation.org/" target="_blank">Wikimedia Foundation, Inc.</a>, 
+    a non-profit organization.
+  </p>
+  
+  <p>
+    AI-generated summaries may contain inaccuracies - always verify critical information with 
+    <a href="https://www.wikipedia.org/" target="_blank">official Wikipedia sources</a>.
+  </p>
+  <p class="privacy-notice small">
+  By using this app, you agree to our 
+  <a href="privacy.html">Privacy Policy</a> 
+  regarding data collection and API usage.
+</p>
+</div>
   <!-- JS -->
+   <!-- Add this with your other script tags -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.4.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="app.js"></script>
 </body>
