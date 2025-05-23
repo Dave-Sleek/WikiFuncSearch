@@ -92,27 +92,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Display Search History
   function displaySearchHistory() {
-    if (!searchHistoryList || !historyContainer) return;
+  if (!searchHistoryList || !historyContainer) return;
 
-    searchHistoryList.innerHTML = '';
-    if (searchHistory.length === 0) {
-      historyContainer.classList.add('d-none');
-      return;
-    }
-
-    historyContainer.classList.remove('d-none');
-
-    searchHistory.forEach(term => {
-      const li = document.createElement('li');
-      li.className = 'list-group-item search-history-item';
-      li.textContent = term;
-      li.addEventListener('click', () => {
-        if (searchInput) searchInput.value = term;
-        performSearch(term);
-      });
-      searchHistoryList.appendChild(li);
-    });
+  searchHistoryList.innerHTML = '';
+  
+  if (searchHistory.length === 0) {
+    historyContainer.classList.add('d-none');
+    return;
   }
+
+  historyContainer.classList.remove('d-none');
+
+  searchHistory.forEach((term, index) => {
+    const li = document.createElement('li');
+    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+    
+    const termSpan = document.createElement('span');
+    termSpan.className = 'search-history-item';
+    termSpan.textContent = term;
+    termSpan.addEventListener('click', () => {
+      if (searchInput) searchInput.value = term;
+      performSearch(term);
+    });
+    
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-sm btn-outline-danger';
+    deleteBtn.innerHTML = '<i class="bi bi-x"></i>';
+    deleteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchHistory.splice(index, 1);
+      localStorage.setItem('wikiSearchHistory', JSON.stringify(searchHistory));
+      displaySearchHistory();
+    });
+    
+    li.appendChild(termSpan);
+    li.appendChild(deleteBtn);
+    searchHistoryList.appendChild(li);
+  });
+}
+
+function clearSearchHistory() {
+  searchHistory = [];
+  localStorage.removeItem('wikiSearchHistory');
+  displaySearchHistory();
+  
+  // Optional: Show a temporary confirmation message
+  const confirmation = document.createElement('div');
+  confirmation.className = 'alert alert-success mt-3';
+  confirmation.textContent = 'Search history cleared';
+  historyContainer.appendChild(confirmation);
+  
+  setTimeout(() => confirmation.remove(), 3000);
+}
 
   // Enhanced Wikipedia API Function with AI Summaries
   async function wikiFunction(searchTerm) {
@@ -490,6 +521,25 @@ document.addEventListener('DOMContentLoaded', () => {
             readAloudBtn.onclick = () => readAloud(newContent);
           }
         }
+
+
+        // Add this with your other utility functions
+        function clearSearchHistory() {
+          searchHistory = [];
+          localStorage.removeItem('wikiSearchHistory');
+          displaySearchHistory(); // This will update the UI
+        }
+
+        // Add this to your event listeners section
+        document.getElementById('clearHistoryBtn')?.addEventListener('click', () => {
+          if (searchHistory.length > 0) {
+            if (confirm('Are you sure you want to clear all search history?')) {
+              clearSearchHistory();
+            }
+          } else {
+            alert('Search history is already empty');
+          }
+        });
 
 
       // Load and set up notes
