@@ -2,7 +2,7 @@
   "name": "Wikipedia AI Summary",
   "short_name": "WAS",
   "description": "AI-powered Wikipedia summaries with offline access",
-  "start_url": "/",
+  "start_url": "/WikiFuncSearch",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#5892f0",
