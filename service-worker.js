@@ -1,11 +1,11 @@
 const CACHE_NAME = 'wiki-search-v1';
 const ASSETS = [
-  '',
-  'index.html',
-  'styles.css',
-  'app.js',
-  'assets/icon-192.png',
-  'assets/icon-512.png'
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/app.js',
+  '/assets/icon-192.png',
+  '/assets/icon-512.png'
 ];
 
 self.addEventListener('install', (e) => {
